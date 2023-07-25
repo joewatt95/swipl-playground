@@ -45,16 +45,16 @@
    (h/title "SWI-Prolog playground")
    (h/h1 "SWI-Prolog playground")
 
-   (h/div (h/h2 "Inputs")
-          (h/div :class "form-group"
-                 (h/label :for "scasp-program"
+   (h/div (h/div :class "form-group"
+                 (h/label :for "swipl-program"
                           :class "col-sm-1 control-label"
-                          "Program")
+                          "Prolog Program")
                  (h/textarea :class "form-control"
-                             :id "scasp-program"
+                             :id "swipl-program"
                              :rows 7
                              :value swipl-program
-                             :change #(reset! swipl-program @%)))
+                             :change #(reset! swipl-program @%))))
+   (h/div (h/h2 "Scasp")
           (h/div :class "form-group"
                  (h/label :for "scasp-query"
                           :class "col-sm-1 control-label"
@@ -66,8 +66,7 @@
                           :change #(reset! scasp-query @%))
                  (h/button :class "btn btn-primary"
                            :click #(update-scasp-justifications!)
-                           (h/text "Run query"))))
-
-   (h/div (h/h2 "Scasp justifications")
-          (h/div :id "scasp-justifications" :style "white-space: pre-wrap"
-                 (h/text "~{scasp-justifications}")))))
+                           (h/text "Run query")))
+          (h/div (h/text "Justifications")
+                 (h/div :id "scasp-justifications" :style "white-space: pre-wrap"
+                        (h/text "~{scasp-justifications}"))))))
