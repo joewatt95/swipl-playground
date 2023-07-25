@@ -23,12 +23,13 @@
   (reset! scasp-justifications "")
   (hj/dosync
    (go
-     (doseq [{:keys [clj natlang]}
+     (doseq [{clj :clj {:keys [model justification-tree]} :natlang}
              (<! (run-scasp-query! @swipl-program @scasp-query))]
        (swap! scasp-justifications
               #(str %
-                    "\nEDN:\n" clj "\n\n"
-                    "Natural language:\n" natlang))))))
+                    "\nClj:\n" clj "\n\n"
+                    "Natural language model:\n" model "\n\n"
+                    "Natural language justification:\n" justification-tree))))))
 
 (h/defelem html [_attrs _children]
   (h/div

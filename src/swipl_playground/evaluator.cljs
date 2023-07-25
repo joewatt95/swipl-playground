@@ -18,6 +18,8 @@
 ;; there.
 (capture-js-console-log!)
 
+(enable-console-print!)
+
 (defn run-scasp-query!
   "Asynchronously loads a swi-prolog interpreter with Scasp and scasp-program-str
    and then runs scasp-query-str.
@@ -28,7 +30,8 @@
     (let [scasp-program-str
           (str ":- ['resources/scasp/scasp_human.qlf'].\n" scasp-program-str)
           scasp-query-str
-          (str "scasp(" scasp-query-str ", [model(_Model), tree(Tree)]),"
+          (str "scasp(" scasp-query-str ", [model(Model), tree(Tree)]),"
+               "human_model(Model, []),"
                "human_justification_tree(Tree, [])")
 
           ;; Load the swi-prolog wasm build and then load the scasp program into it.
@@ -46,8 +49,13 @@
             (repeatedly
              #(do (clear-console-log!)
                   (when-let [result (-> results-gen (.next) (.-value))]
-                    {:clj (js->clj result :keywordize-keys true)
-                     :natlang (str/join "\n" @console-log)}))))]
+                    (let [[model justification-tree]
+                          (->> @console-log
+                               (split-with (partial re-find #"^\s*•"))
+                               (mapv (partial str/join "\n")))]
+                      {:clj (js->clj result :keywordize-keys true)
+                       :natlang {:model model
+                                 :justification-tree justification-tree}})))))]
       ;; Run the query and return the lazy-seq of results.
       (->> scasp-query-str
            (.query (.-prolog swipl))
