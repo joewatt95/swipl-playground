@@ -45,20 +45,21 @@
    (h/title "SWI-Prolog playground")
    (h/h1 "SWI-Prolog playground")
 
-   (h/div (h/div :class "form-group"
-                 (h/label :for "swipl-program"
-                          :class "col-sm-1 control-label"
-                          "Prolog Program")
-                 (h/textarea :class "form-control"
-                             :id "swipl-program"
-                             :rows 7
-                             :value swipl-program
-                             :change #(reset! swipl-program @%))))
+   (h/div :class "form-group"
+          (h/label :for "swipl-program"
+                   :class "col-sm-1 control-label"
+                   "Prolog Program")
+          (h/textarea :class "form-control"
+                      :id "swipl-program"
+                      :rows 7
+                      :value swipl-program
+                      :change #(reset! swipl-program @%)))
+
    (h/div (h/h2 "Scasp")
           (h/div :class "form-group"
                  (h/label :for "scasp-query"
                           :class "col-sm-1 control-label"
-                          "Scasp Query")
+                          "Query")
                  (h/input :class "form-control"
                           :id "scasp-query"
                           :type "text"
