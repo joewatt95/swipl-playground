@@ -1,0 +1,73 @@
+(ns swipl-playground.view
+  (:require
+   [cljs.core.async :refer [go <!]]
+   [hoplon.core :as h]
+   [javelin.core :as hj]
+   [swipl-playground.evaluator :refer [run-scasp-query!]]))
+
+(enable-console-print!)
+
+(hj/defc scasp-program
+  "p(X) :- not(q(X)).
+   p(1).
+
+   q(X) :- not(p(X)).")
+
+(hj/defc scasp-query "p(X)")
+(hj/defc scasp-result "")
+
+;; (def query "payAmt(X)")
+;; (def query1 "p(X)")
+
+(defn update-scasp-result! []
+  (reset! scasp-result "")
+  (hj/dosync
+   (go
+     (doseq [{:keys [result natlang]}
+             (<! (run-scasp-query! @scasp-program @scasp-query))]
+       (swap! scasp-result str
+              (str "\nEDN:\n" result "\n\n"
+                   "Natural language:\n" natlang))))))
+
+(h/defelem html [_attrs _children]
+  (h/div
+   (h/link :rel "stylesheet"
+           :href "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+           :integrity "sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+           :crossorigin "anonymous")
+    ;;  (h/script :src "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    ;;            :integrity "sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    ;;            :crossorigin "anonymous")
+     ;; SWIPL stuff
+   (h/script :src "https://SWI-Prolog.github.io/npm-swipl-wasm/3/4/5/index.js")
+
+   (h/title "Scasp playground")
+   (h/h1 "Scasp playground")
+
+   (h/div (h/h2 "Inputs")
+          (h/div :class "form-group"
+                 (h/label :for "scasp-program"
+                          :class "col-sm-1 control-label"
+                          "Program")
+                 (h/textarea :class "form-control"
+                             :id "scasp-program"
+                             :rows 25
+                             :value scasp-program
+                             :change #(reset! scasp-program @%)))
+          (h/div :class "form-group"
+                 (h/label :for "scasp-query"
+                          :class "col-sm-1 control-label"
+                          "Query")
+                 (h/input :class "form-control"
+                          :id "scasp-query"
+                          :type "text"
+                          :value scasp-query
+                          :change #(reset! scasp-query @%))
+
+                 (h/button :class "btn btn-primary"
+                           :click #(update-scasp-result!)
+                           (h/text "Run query"))))
+
+   (h/div (h/h2 "Justifications")
+          (h/div :id "scasp-result" :style "white-space: pre-wrap"
+                 (h/text "~{scasp-result}")))))
