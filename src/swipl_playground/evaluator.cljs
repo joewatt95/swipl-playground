@@ -14,6 +14,10 @@
           (swap! console-log conj args)
           (.call js/console.stdlog js/console args))))
 
+;; Capture console.log because scasp outputs natural language justifications
+;; there.
+(capture-js-console-log!)
+
 (defn run-scasp-query!
   "Asynchronously loads a swi-prolog interpreter with Scasp and scasp-program-str
    and then runs scasp-query-str.
@@ -21,9 +25,6 @@
    {:clj _ :natlang _}"
   [scasp-program-str scasp-query-str]
   (go
-    ;; Capture console.log because scasp outputs natural language justifications
-    ;; there.
-    (capture-js-console-log!)
     (let [scasp-program-str
           (str ":- ['resources/scasp/scasp_human.qlf'].\n" scasp-program-str)
           scasp-query-str

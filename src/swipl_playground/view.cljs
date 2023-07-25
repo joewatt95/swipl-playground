@@ -23,11 +23,11 @@
   (reset! scasp-justifications "")
   (hj/dosync
    (go
-     (doseq [{:keys [result natlang]}
+     (doseq [{:keys [clj natlang]}
              (<! (run-scasp-query! @swipl-program @scasp-query))]
        (swap! scasp-justifications
               #(str %
-                    "\nEDN:\n" result "\n\n"
+                    "\nEDN:\n" clj "\n\n"
                     "Natural language:\n" natlang))))))
 
 (h/defelem html [_attrs _children]
