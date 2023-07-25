@@ -1,11 +1,10 @@
 (ns swipl-playground.view
-  (:require
-   [cljs.core.async :refer [go <!]]
-   [hoplon.core :as h]
-   [javelin.core :as hj]
-   [swipl-playground.evaluator :refer [run-scasp-query!]]))
+  (:require [cljs.core.async :refer [go <!]]
+            [hoplon.core :as h]
+            [javelin.core :as hj]
+            [swipl-playground.evaluator :refer [run-scasp-query!]]))
 
-(enable-console-print!)
+;; (enable-console-print!)
 
 (hj/defc swipl-program
   "p(X) :- not(q(X)).
@@ -40,7 +39,7 @@
     ;;  (h/script :src "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     ;;            :integrity "sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     ;;            :crossorigin "anonymous")
-     ;; SWIPL stuff
+    ;; SWIPL stuff
    (h/script :src "https://SWI-Prolog.github.io/npm-swipl-wasm/3/4/5/index.js")
 
    (h/title "SWI-Prolog playground")
