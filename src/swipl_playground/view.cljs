@@ -7,27 +7,29 @@
 
 (enable-console-print!)
 
-(hj/defc scasp-program
+(hj/defc swipl-program
   "p(X) :- not(q(X)).
    p(1).
 
    q(X) :- not(p(X)).")
 
 (hj/defc scasp-query "p(X)")
-(hj/defc scasp-result "")
+
+(hj/defc scasp-justifications "")
 
 ;; (def query "payAmt(X)")
 ;; (def query1 "p(X)")
 
-(defn update-scasp-result! []
-  (reset! scasp-result "")
+(defn update-scasp-justifications! []
+  (reset! scasp-justifications "")
   (hj/dosync
    (go
      (doseq [{:keys [result natlang]}
-             (<! (run-scasp-query! @scasp-program @scasp-query))]
-       (swap! scasp-result str
-              (str "\nEDN:\n" result "\n\n"
-                   "Natural language:\n" natlang))))))
+             (<! (run-scasp-query! @swipl-program @scasp-query))]
+       (swap! scasp-justifications
+              #(str %
+                    "\nEDN:\n" result "\n\n"
+                    "Natural language:\n" natlang))))))
 
 (h/defelem html [_attrs _children]
   (h/div
@@ -41,8 +43,8 @@
      ;; SWIPL stuff
    (h/script :src "https://SWI-Prolog.github.io/npm-swipl-wasm/3/4/5/index.js")
 
-   (h/title "Scasp playground")
-   (h/h1 "Scasp playground")
+   (h/title "SWI-Prolog playground")
+   (h/h1 "SWI-Prolog playground")
 
    (h/div (h/h2 "Inputs")
           (h/div :class "form-group"
@@ -51,23 +53,22 @@
                           "Program")
                  (h/textarea :class "form-control"
                              :id "scasp-program"
-                             :rows 25
-                             :value scasp-program
-                             :change #(reset! scasp-program @%)))
+                             :rows 7
+                             :value swipl-program
+                             :change #(reset! swipl-program @%)))
           (h/div :class "form-group"
                  (h/label :for "scasp-query"
                           :class "col-sm-1 control-label"
-                          "Query")
+                          "Scasp Query")
                  (h/input :class "form-control"
                           :id "scasp-query"
                           :type "text"
                           :value scasp-query
                           :change #(reset! scasp-query @%))
-
                  (h/button :class "btn btn-primary"
-                           :click #(update-scasp-result!)
+                           :click #(update-scasp-justifications!)
                            (h/text "Run query"))))
 
-   (h/div (h/h2 "Justifications")
-          (h/div :id "scasp-result" :style "white-space: pre-wrap"
-                 (h/text "~{scasp-result}")))))
+   (h/div (h/h2 "Scasp justifications")
+          (h/div :id "scasp-justifications" :style "white-space: pre-wrap"
+                 (h/text "~{scasp-justifications}")))))
