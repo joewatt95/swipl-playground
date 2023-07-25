@@ -8,19 +8,17 @@ project implementing a web-based playground for SWI-Prolog, powered by
 
 - java
 - nvm
-- npm
 
 ## Usage
 ### Setup
 ```shell
-nvm install
-nvm use
+nvm install && nvm use
 npm install
 ```
 
 ### Development
 ```shell
- npx shadow-cljs watch app
+ nvm use && npx shadow-cljs watch app
 ```
 
 2. Go to <http://localhost:8000> in your browser. You should see the SWI-Prolog
@@ -32,7 +30,7 @@ npm install
 ### Compile an optimized version
 
 ```shell
- npx shadow-cljs release app
+ nvm use && npx shadow-cljs release app
 ```
 
 ## License
