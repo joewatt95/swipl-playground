@@ -30,9 +30,9 @@
     (let [scasp-program-str
           (str ":- ['resources/scasp/scasp_human.qlf'].\n" scasp-program-str)
           scasp-query-str
-          (str "scasp(" scasp-query-str ", [model(Model), tree(Tree)]),"
+          (str "scasp(" scasp-query-str ", [model(Model), tree(Justification_tree)]),"
                "human_model(Model, []),"
-               "human_justification_tree(Tree, [])")
+               "human_justification_tree(Justification_tree, [])")
 
           ;; Load the swi-prolog wasm build and then load the scasp program into it.
           ;; We run this synchronously, blocking until it completes.
@@ -53,7 +53,8 @@
                           (->> @console-log
                                (split-with (partial re-find #"^\s*•"))
                                (mapv (partial str/join "\n")))]
-                      {:clj (js->clj result :keywordize-keys true)
+                      {:json (.stringify js/JSON result)
+                       ;; (js->clj result :keywordize-keys true)
                        :natlang {:model model
                                  :justification-tree justification-tree}})))))]
       ;; Run the query and return the lazy-seq of results.

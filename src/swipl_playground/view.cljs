@@ -14,20 +14,20 @@
 
 (hj/defc scasp-query "p(X)")
 
-(hj/defc scasp-justifications "")
+(hj/defc scasp-result "")
 
 ;; (def query "payAmt(X)")
 ;; (def query1 "p(X)")
 
-(defn update-scasp-justifications! []
-  (reset! scasp-justifications "")
+(defn update-scasp-result! []
+  (reset! scasp-result "")
   (hj/dosync
    (go
-     (doseq [{clj :clj {:keys [model justification-tree]} :natlang}
+     (doseq [{json :json {:keys [model justification-tree]} :natlang}
              (<! (run-scasp-query! @swipl-program @scasp-query))]
-       (swap! scasp-justifications
+       (swap! scasp-result
               #(str %
-                    "\nClj:\n" clj "\n\n"
+                    "\nJSON:\n" json "\n\n"
                     "Natural language model:\n" model "\n\n"
                     "Natural language justification:\n" justification-tree))))))
 
@@ -67,8 +67,8 @@
                           :value scasp-query
                           :change #(reset! scasp-query @%))
                  (h/button :class "btn btn-primary"
-                           :click #(update-scasp-justifications!)
+                           :click #(update-scasp-result!)
                            (h/text "Run query")))
-          (h/div (h/text "Justifications")
-                 (h/div :id "scasp-justifications" :style "white-space: pre-wrap"
-                        (h/text "~{scasp-justifications}"))))))
+          (h/div (h/text "Result")
+                 (h/div :id "Natlang" :style "white-space: pre-wrap"
+                        (h/text "~{scasp-result}"))))))
