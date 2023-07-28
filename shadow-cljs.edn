@@ -1,11 +1,8 @@
 ;; shadow-cljs configuration
 {:source-paths ["src"]
  :dependencies [[hoplon/hoplon "7.3.3"]
-                [binaryage/devtools "1.0.7"]
+                [binaryage/devtools "1.0.7"]]
                 ;; [applied-science/js-interop "0.4.2"]
-                ;; [defun "0.3.1"]
-                ;; [org.clojure/core.match "1.0.1"]
-                ]
  :dev-http {8000 "public"}
  :builds {:app {:target :browser
                 :modules {:main {:init-fn swipl-playground.main/init}}
