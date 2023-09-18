@@ -34,11 +34,11 @@
 (h/defelem html [_attrs _children]
   (h/div
    (h/link :rel "stylesheet"
-           :href "https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+           :href "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
            :integrity "sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
            :crossorigin "anonymous")
     ;; SWIPL stuff
-   (h/script :src "https://SWI-Prolog.github.io/npm-swipl-wasm/3/5/2/index.js")
+   (h/script :src "https://SWI-Prolog.github.io/npm-swipl-wasm/3/5/3/index.js")
 
    (h/title "SWI-Prolog playground")
    (h/h1 "SWI-Prolog playground")
