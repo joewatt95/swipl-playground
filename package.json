@@ -2,7 +2,8 @@
   "name": "swipl-playground",
   "version": "0.0.1",
   "private": true,
+  "preinstall": "npx only-allow pnpm", 
   "devDependencies": {
-    "shadow-cljs": "2.25.7"
+    "shadow-cljs": "2.25.8"
   }
 }

@@ -13,7 +13,7 @@ project implementing a web-based playground for SWI-Prolog, powered by
 ### Setup
 ```shell
 nvm install && nvm use
-yarn install
+pnpm install
 ```
 
 ### Development

@@ -35,7 +35,7 @@
   (h/div
    (h/link :rel "stylesheet"
            :href "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-           :integrity "sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+           :integrity "sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
            :crossorigin "anonymous")
     ;; SWIPL stuff
    (h/script :src "https://SWI-Prolog.github.io/npm-swipl-wasm/3/5/4/index.js")
