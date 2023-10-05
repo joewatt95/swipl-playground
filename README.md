@@ -7,18 +7,17 @@ project implementing a web-based playground for SWI-Prolog, powered by
 ## Dependencies
 
 - java
-- nvm
+- pnpm
 
 ## Usage
 ### Setup
 ```shell
-nvm install && nvm use
 pnpm install
 ```
 
 ### Development
 ```shell
- nvm use && npx shadow-cljs watch app
+  npx shadow-cljs watch app
 ```
 
 2. Go to <http://localhost:8000> in your browser. You should see the SWI-Prolog
