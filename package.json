@@ -6,6 +6,7 @@
     "shadow-cljs": "2.25.8"
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "start": "npx shadow-cljs watch app"
   }
 }
