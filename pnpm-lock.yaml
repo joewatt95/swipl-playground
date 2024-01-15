@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   shadow-cljs:
-    specifier: 2.26.4
-    version: 2.26.4
+    specifier: 2.26.5
+    version: 2.26.5
 
 packages:
 
@@ -120,7 +120,7 @@ packages:
     dependencies:
       function-bind: 1.1.2
       get-intrinsic: 1.2.2
-      set-function-length: 1.1.1
+      set-function-length: 1.2.0
     dev: true
 
   /cipher-base@1.0.4:
@@ -536,11 +536,12 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
-  /set-function-length@1.1.1:
-    resolution: {integrity: sha512-VoaqjbBJKiWtg4yRcKBQ7g7wnGnLV3M8oLvVWwOk2PdYY6PEFegR1vezXR0tw6fZGF9csVakIRjrJiy2veSBFQ==}
+  /set-function-length@1.2.0:
+    resolution: {integrity: sha512-4DBHDoyHlM1IRPGYcoxexgh67y4ueR53FKV1yyxwFMY7aCqcN/38M1+SwZ/qJQ8iLv7+ck385ot4CcisOAPT9w==}
     engines: {node: '>= 0.4'}
     dependencies:
       define-data-property: 1.1.1
+      function-bind: 1.1.2
       get-intrinsic: 1.2.2
       gopd: 1.0.1
       has-property-descriptors: 1.0.1
@@ -562,8 +563,8 @@ packages:
     resolution: {integrity: sha512-cZB2pzVXBnhpJ6PQdsjO+j/MksR28mv4QD/hP/2y1fsIa9Z9RutYgh3N34FZ8Ktl4puAXaIGlct+gMCJ5BmwmA==}
     dev: true
 
-  /shadow-cljs@2.26.4:
-    resolution: {integrity: sha512-g2fXv0IXCXMGfd5IvgXmcxoGzubLVXIJGJ5fw+yAw8uXycuH+eCI3dsfpiuJ2Jd9enbUPGkUEaEUg2fxyW8enQ==}
+  /shadow-cljs@2.26.5:
+    resolution: {integrity: sha512-3mWQefe1va6hjGxIIfLliw3N1ylJxH/qQLw5P3oJS40GO/6cRELXJT3pB9vSKr8SoRdt5mnfUMh1JkG2MGmrhw==}
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
