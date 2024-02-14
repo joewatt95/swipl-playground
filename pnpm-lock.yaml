@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   shadow-cljs:
-    specifier: 2.27.3
-    version: 2.27.3
+    specifier: 2.27.4
+    version: 2.27.4
 
 packages:
 
@@ -115,10 +115,11 @@ packages:
     resolution: {integrity: sha512-HpGFw18DgFWlncDfjTa2rcQ4W88O1mC8e8yZ2AvQY5KDaktSTwo+KRf6nHK6FRI5FyRyb/5T6+TSxfP7QyGsmQ==}
     dev: true
 
-  /call-bind@1.0.6:
-    resolution: {integrity: sha512-Mj50FLHtlsoVfRfnHaZvyrooHcrlceNZdL/QBvJJVd9Ta55qCQK0gs4ss2oZDeV9zFCs6ewzYgVE5yfVmfFpVg==}
+  /call-bind@1.0.7:
+    resolution: {integrity: sha512-GHTSNSYICQ7scH7sZ+M2rFopRoLh8t2bLSW6BbgrtLsahOIB5iyAVJf9GjWK3cYTDaMj4XdBpM1cA6pIS0Kv2w==}
     engines: {node: '>= 0.4'}
     dependencies:
+      es-define-property: 1.0.0
       es-errors: 1.3.0
       function-bind: 1.1.2
       get-intrinsic: 1.2.4
@@ -188,22 +189,21 @@ packages:
       randomfill: 1.0.4
     dev: true
 
-  /define-data-property@1.1.2:
-    resolution: {integrity: sha512-SRtsSqsDbgpJBbW3pABMCOt6rQyeM8s8RiyeSN8jYG8sYmt/kGJejbydttUsnDs1tadr19tvhT4ShwMyoqAm4g==}
+  /define-data-property@1.1.4:
+    resolution: {integrity: sha512-rBMvIzlpA8v6E+SJZoo++HAYqsLrkg7MSfIinMPFhmkorw7X+dOXVJQs+QT69zGkzMyfDnIMN2Wid1+NbL3T+A==}
     engines: {node: '>= 0.4'}
     dependencies:
+      es-define-property: 1.0.0
       es-errors: 1.3.0
-      get-intrinsic: 1.2.4
       gopd: 1.0.1
-      has-property-descriptors: 1.0.1
     dev: true
 
   /define-properties@1.2.1:
     resolution: {integrity: sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg==}
     engines: {node: '>= 0.4'}
     dependencies:
-      define-data-property: 1.1.2
-      has-property-descriptors: 1.0.1
+      define-data-property: 1.1.4
+      has-property-descriptors: 1.0.2
       object-keys: 1.1.1
     dev: true
 
@@ -239,6 +239,13 @@ packages:
       minimalistic-crypto-utils: 1.0.1
     dev: true
 
+  /es-define-property@1.0.0:
+    resolution: {integrity: sha512-jxayLKShrEqqzJ0eumQbVhTYQM27CfT1T35+gCgDFoL82JLsXqTJ76zv6A0YLOgEnLUMvLzsDsGIrl8NFpT2gQ==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      get-intrinsic: 1.2.4
+    dev: true
+
   /es-errors@1.3.0:
     resolution: {integrity: sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==}
     engines: {node: '>= 0.4'}
@@ -268,7 +275,7 @@ packages:
       function-bind: 1.1.2
       has-proto: 1.0.1
       has-symbols: 1.0.3
-      hasown: 2.0.0
+      hasown: 2.0.1
     dev: true
 
   /gopd@1.0.1:
@@ -277,10 +284,10 @@ packages:
       get-intrinsic: 1.2.4
     dev: true
 
-  /has-property-descriptors@1.0.1:
-    resolution: {integrity: sha512-VsX8eaIewvas0xnvinAe9bw4WfIeODpGYikiWYLH+dma0Jw6KHYqWiWfhQlgOVK8D6PvjubK5Uc4P0iIhIcNVg==}
+  /has-property-descriptors@1.0.2:
+    resolution: {integrity: sha512-55JNKuIW+vq4Ke1BjOTjM2YctQIvCT7GFzHwmfZPGo5wnrgkid0YQtnAleFSqumZm4az3n2BS+erby5ipJdgrg==}
     dependencies:
-      get-intrinsic: 1.2.4
+      es-define-property: 1.0.0
     dev: true
 
   /has-proto@1.0.1:
@@ -309,8 +316,8 @@ packages:
       minimalistic-assert: 1.0.1
     dev: true
 
-  /hasown@2.0.0:
-    resolution: {integrity: sha512-vUptKVTpIJhcczKBbgnS+RtcuYMB8+oNzPK2/Hp3hanz8JmpATdmmgLgSaadVREkDm+e2giHwY3ZRkyjSIDDFA==}
+  /hasown@2.0.1:
+    resolution: {integrity: sha512-1/th4MHjnwncwXsIW6QMzlvYL9kG5e/CpVvLRZe4XPa8TOUNbCELqmvhDmnkNsAjwaG4+I8gJJL0JBvTTLO9qA==}
     engines: {node: '>= 0.4'}
     dependencies:
       function-bind: 1.1.2
@@ -413,7 +420,7 @@ packages:
     resolution: {integrity: sha512-byy+U7gp+FVwmyzKPYhW2h5l3crpmGsxl7X2s8y43IgxvG4g3QZ6CffDtsNQy1WsmZpQbO+ybo0AlW7TY6DcBQ==}
     engines: {node: '>= 0.4'}
     dependencies:
-      call-bind: 1.0.6
+      call-bind: 1.0.7
       define-properties: 1.2.1
       has-symbols: 1.0.3
       object-keys: 1.1.1
@@ -550,12 +557,12 @@ packages:
     resolution: {integrity: sha512-j4t6ccc+VsKwYHso+kElc5neZpjtq9EnRICFZtWyBsLojhmeF/ZBd/elqm22WJh/BziDe/SBiOeAt0m2mfLD0g==}
     engines: {node: '>= 0.4'}
     dependencies:
-      define-data-property: 1.1.2
+      define-data-property: 1.1.4
       es-errors: 1.3.0
       function-bind: 1.1.2
       get-intrinsic: 1.2.4
       gopd: 1.0.1
-      has-property-descriptors: 1.0.1
+      has-property-descriptors: 1.0.2
     dev: true
 
   /setimmediate@1.0.5:
@@ -574,8 +581,8 @@ packages:
     resolution: {integrity: sha512-cZB2pzVXBnhpJ6PQdsjO+j/MksR28mv4QD/hP/2y1fsIa9Z9RutYgh3N34FZ8Ktl4puAXaIGlct+gMCJ5BmwmA==}
     dev: true
 
-  /shadow-cljs@2.27.3:
-    resolution: {integrity: sha512-G3Ts+WS+F6vr1jLVFN0emabR/Zl5QD6R9WQkqiZM/d38IJn0JDSaaJ4wsxiZrerv4VCFFTyZ5Q4UDUaNJtp6Pg==}
+  /shadow-cljs@2.27.4:
+    resolution: {integrity: sha512-NgLkdK1hpjDCCVAwQdBebz+0DzgaVYaGOw1ojUwY627DLL+kG/pwhw+qiDEFeJl+CWCMFiWJgnwVEM8d/Cit5g==}
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
@@ -594,7 +601,7 @@ packages:
     resolution: {integrity: sha512-QcgiIWV4WV7qWExbN5llt6frQB/lBven9pqliLXfGPB+K9ZYXxDozp0wLkHS24kWCm+6YXH/f0HhnObZnZOBnQ==}
     engines: {node: '>= 0.4'}
     dependencies:
-      call-bind: 1.0.6
+      call-bind: 1.0.7
       es-errors: 1.3.0
       get-intrinsic: 1.2.4
       object-inspect: 1.13.1
