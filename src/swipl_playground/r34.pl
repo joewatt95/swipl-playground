@@ -5,6 +5,7 @@
 :- style_check(-discontiguous).
 :- style_check(-singleton).
 :- set_prolog_flag(scasp_unknown, fail).
+:- set_prolog_flag(gc, off).
 
 % An implementation of Logic Programming with Defaults and Argumentation Theories
 
