@@ -28,10 +28,12 @@
   [scasp-program-str scasp-query-str]
   (go
     (let [scasp-program-str
-          (str ":- ['resources/scasp/scasp_human.qlf'].\n" scasp-program-str)
+          (str ":- ['resources/scasp/scasp.qlf'].
+                "
+               scasp-program-str)
           scasp-query-str
-          (str "scasp(" scasp-query-str ", [model(Model), tree(Justification_tree)]),"
-               "human_model(Model, []),"
+          (str "scasp(" scasp-query-str ", [tree(Justification_tree)]),"
+               #_"human_model(Model, []),"
                "human_justification_tree(Justification_tree, [])")
 
           ;; Load the swi-prolog wasm build and then load the scasp program into it.
@@ -61,4 +63,5 @@
       (->> scasp-query-str
            (.query (.-prolog swipl))
            results-gen->seq-with-natlang
-           (take-while some?)))))
+           (into [] (take 1))
+           #_(take-while some?)))))
