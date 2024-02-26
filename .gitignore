@@ -5,3 +5,4 @@
 public/js/
 node_modules/
 .calva/*
+.cpcache/
