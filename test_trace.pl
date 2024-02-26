@@ -1,10 +1,10 @@
-% https://swi-prolog.discourse.group/t/example-of-prolog-trace-interception-4/4458
-% https://swi-prolog.discourse.group/t/using-prolog-trace-interception-4/4376/5
+% https://swi-prolog.discourse.group/t/tool-for-drawing-sld-trees-in-prolog/4737
+% % https://swi-prolog.discourse.group/t/using-prolog-trace-interception-4/4376/5
 
 % https://www.swi-prolog.org/pldoc/man?section=debugoverview
 % https://swi-prolog.discourse.group/t/swi-prolog-in-the-browser-using-wasm/5650
 
-:- [library(dicts)].
+:- [library(dicts), library(ddebug), library(prooftree)].
 :- set_prolog_flag(gc, off).
 
 :- dynamic trace_filter/1.
@@ -12,10 +12,18 @@
 :- visible(+all).
 
 user:prolog_trace_interception(Port, Frame, _Choice, continue) :-
-  prolog_frame_attribute(Frame, goal, Goal),
-  prolog_frame_attribute(Frame, level, Level),
-  % prolog_frame_attribute(Frame, parent_goal(_), Parent_goal),
-  writeln(stack_frame{current_goal:Goal, level:Level, port:Port}).
+  prolog_frame_attribute(Frame, goal, Current_goal),
+  prolog_frame_attribute(Frame, level, Recursion_level),
+  prolog_frame_attribute(Frame, parent_goal(Parent_frame), Current_goal),
+  prolog_frame_attribute(Parent_frame, goal, Parent_goal),
+  writeln(
+    stack_frame{
+      current_goal:Current_goal,
+      parent_goal:Parent_goal,
+      port:Port,
+      recursion_depth:Recursion_level
+    }
+  ).
 
 female(pam).
 female(liz).
@@ -36,26 +44,29 @@ parent(bob,peter).
 parent(peter,jim).
 
 mother(X,Y) :-
-    parent(X,Y),
-    female(X).
+  parent(X,Y),
+  female(X).
 
 grandmother(X,Z) :-
-    mother(X,Y),
-    parent(Y,Z).
+  mother(X,Y),
+  parent(Y,Z).
 
-run :-
-    asserta( trace_filter(prolog_trace_interception_examples:parent(_,_)), Ref_1 ),
-    asserta( trace_filter(prolog_trace_interception_examples:female(_)), Ref_2 ),
-    asserta( trace_filter(prolog_trace_interception_examples:mother(_,_)), Ref_3 ),
-    trace,
-    (
-        mother(_,_),
-        fail,
-        !
-    ;
-        notrace,
-        nodebug
-    ),
-    erase(Ref_1),
-    erase(Ref_2),
-    erase(Ref_3).
+run0 :-
+  trace,
+  (
+      mother(_,_),
+      fail,
+      !
+  ;
+      notrace,
+      nodebug
+  ).
+
+% https://swi-prolog.discourse.group/t/a-way-to-draw-only-a-successful-derivation/6726
+% https://www.swi-prolog.org/pack/file_details/ddebug/prolog/prooftree.pl
+
+% run1 :-
+%   proof_tree(mother(bob, Y), Tree),
+%   pt_goal(Tree, Goal),
+%   pt_children(Tree, Children),
+%   writeln(tree{goal:Goal, children:Children}).
