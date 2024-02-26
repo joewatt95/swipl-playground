@@ -28,7 +28,7 @@
   [scasp-program-str scasp-query-str]
   (go
     (let [scasp-program-str
-          (str ":- ['resources/scasp/scasp.qlf'].
+          (str ":- ['resources/swipl/scasp.qlf'].
                 "
                scasp-program-str)
           scasp-query-str
