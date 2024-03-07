@@ -38,7 +38,7 @@
            :integrity "sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
            :crossorigin "anonymous")
     ;; SWIPL stuff
-   (h/script :src "https://SWI-Prolog.github.io/npm-swipl-wasm/3/7/1/index.js")
+   (h/script :src "https://SWI-Prolog.github.io/npm-swipl-wasm/3/7/3/index.js")
 
    (h/title "SWI-Prolog playground")
    (h/h1 "SWI-Prolog playground")
