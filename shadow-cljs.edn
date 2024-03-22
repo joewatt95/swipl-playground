@@ -5,5 +5,5 @@
                 :modules {:main {:init-fn swipl-playground.main/init}}
                 :devtools {:before-load swipl-playground.main/stop
                            :after-load swipl-playground.main/start}}}
- :compiler-options {:output-feature-set :es-next
+ :compiler-options {:output-feature-set :es2021
                     :optimizations :advanced}}
