@@ -31,7 +31,3 @@ pnpm install
 ```shell
  nvm use && npx shadow-cljs release app
 ```
-
-## License
-
-Copyright © 2023 Joe
